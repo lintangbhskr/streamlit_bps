@@ -9,10 +9,11 @@ st.title("🚀 Visualisasi Penjualan Listrik Berdasarkan Tahun")
 csv_url = "https://github.com/lintangbhskr/streamlit_bps/blob/main/data_pln_clean.csv"  # Ganti dengan URL raw GitHub Anda
 
 # Fungsi untuk memuat data dari GitHub
-@st.cache
+@st.cache_data
 def load_data():
-    df = pd.read_csv(csv_url)
-    return df
+    csv_url = "https://github.com/lintangbhskr/streamlit_bps/blob/main/data_pln_clean.csv"
+    return pd.read_csv(csv_url)
+
 
 # Muat data
 df = load_data()
