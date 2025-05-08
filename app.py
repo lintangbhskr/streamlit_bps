@@ -5,16 +5,23 @@ import plotly.express as px
 # Title of the app
 st.title("🚀 Visualisasi Penjualan Listrik Berdasarkan Tahun")
 
-# Upload Data
-uploaded_file = st.file_uploader("Upload file data produksi listrik (CSV)", type=["csv"])
+# URL raw CSV file di GitHub
+csv_url = "https://raw.githubusercontent.com/your-username/your-repository-name/main/data_pln_clean.csv"  # Ganti dengan URL raw GitHub Anda
 
-if uploaded_file:
-    # Load data dari file CSV
-    df = pd.read_csv(uploaded_file)
-    st.success("✅ File berhasil dimuat!")
-
-    # Tampilkan kolom yang ada dalam dataset
-    st.write("Kolom dalam dataset:", df.columns)
+    # Fungsi untuk memuat data dari GitHub
+    @st.cache
+    def load_data():
+        df = pd.read_csv(csv_url)
+        return df
+    
+    # Muat data
+    df = load_data()
+    
+    # Cek data berhasil dimuat
+    st.success("✅ Data berhasil dimuat dari GitHub!")
+    
+    # Tampilkan beberapa baris pertama data
+    st.write(df.head())
 
     # Pastikan kolom yang diperlukan ada
     if all(col in df.columns for col in ['Produksi_kWh', 'Terjual_kWh', 'Efficiency_', 'Kesusutan_kWh', 'Persentase_', 'Pelanggan', 'Tahun']):
