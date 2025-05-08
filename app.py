@@ -33,7 +33,7 @@ if all(col in df.columns for col in ['Produksi_kWh', 'Terjual_kWh', 'Efficiency_
     df_filtered = df[df["Tahun"] == selected_year]
 
     # 2. Pilihan SelectBox untuk memilih Bulan
-    months = df_filtered["Bulan"].unique()  # Ambil nilai unik dari kolom 'Bulan'
+    months = df_filtered["Bulan"].unique()  # Ambil nilai unik dari kolom 'Bulan' yang berbentuk numerik
     selected_month = st.selectbox("Pilih Bulan untuk Analisis", months)
 
     # Filter data berdasarkan bulan yang dipilih
@@ -46,6 +46,7 @@ if all(col in df.columns for col in ['Produksi_kWh', 'Terjual_kWh', 'Efficiency_
     # 3. Tren Produksi dan Listrik Terjual
     st.subheader("📈 Tren Produksi dan Listrik Terjual")
     if "YearMonth" not in df_filtered_month.columns:
+        # Membuat kolom 'YearMonth' agar dapat digunakan untuk plot
         df_filtered_month['YearMonth'] = pd.to_datetime(df_filtered_month['Tahun'].astype(str) + df_filtered_month['Bulan'].astype(str), format='%Y%m')
     
     fig_prod_sales = px.line(df_filtered_month, x='YearMonth', y=['Produksi_kWh', 'Terjual_kWh'], title="Tren Produksi dan Listrik Terjual")
