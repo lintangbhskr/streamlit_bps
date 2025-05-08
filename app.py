@@ -6,7 +6,7 @@ import plotly.express as px
 st.title("🚀 Visualisasi Penjualan Listrik Berdasarkan Tahun")
 
 # URL raw CSV file di GitHub
-csv_url = "https://raw.githubusercontent.com/your-username/your-repository-name/main/data_pln_clean.csv"  # Ganti dengan URL raw GitHub Anda
+csv_url = "https://github.com/lintangbhskr/streamlit_bps/blob/main/data_pln_clean.csv"  # Ganti dengan URL raw GitHub Anda
 
 # Fungsi untuk memuat data dari GitHub
 @st.cache
